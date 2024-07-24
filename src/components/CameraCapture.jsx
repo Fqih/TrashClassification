@@ -75,12 +75,21 @@ const CameraCapture = () => {
 
         const prediction = await model.predict(tensor).data();
         const maxIndex = prediction.indexOf(Math.max(...prediction));
-        
-        setPrediction({
-            label: classLabels[maxIndex],
-            probability: prediction[maxIndex],
-            suggestion: saran[classLabels[maxIndex]]
-        });
+        const maxProbability = prediction[maxIndex];
+
+        if (maxProbability < 0.55) {
+            setPrediction({
+                label: "Gambar tidak dikenali",
+                probability: maxProbability,
+                suggestion: "Harap gunakan gambar yang lebih jelas."
+            });
+        } else {
+            setPrediction({
+                label: classLabels[maxIndex],
+                probability: maxProbability,
+                suggestion: saran[classLabels[maxIndex]]
+            });
+        }
     };
 
     return (

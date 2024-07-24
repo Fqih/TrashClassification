@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import CameraCapture from './components/CameraCapture.jsx';
 import InputCapture from './components/InputCapture.jsx';
@@ -17,7 +17,6 @@ function App() {
     setShowCamera(false);
     setShowInput(true);
   };
-
   return (
     <div className="App">
       <div className="button-container">
