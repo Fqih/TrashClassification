@@ -12,4 +12,7 @@ export const saran = {
     trash: 'Buang di tempat sampah umum.',
     'white-glass': 'Harap daur ulang botol kaca putih di tempat daur ulang kaca dan hati hati'
 };
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0b7395789713a2384bd120180a8263904fc68d6c
