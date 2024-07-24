@@ -1,5 +1,7 @@
 # Trash Classification
 
+## Live Demo
+
 [Live Demo](https://trashclassification21.vercel.app)
 
 
