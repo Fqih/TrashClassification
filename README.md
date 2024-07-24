@@ -1,8 +1,11 @@
 # Trash Classification
 
+<<<<<<< HEAD
 
 ## Live demo
 
+=======
+>>>>>>> origin/main
 [Live Demo](https://trashclassification21.vercel.app)
 
 
