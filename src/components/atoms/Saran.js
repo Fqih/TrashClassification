@@ -11,8 +11,4 @@ export const saran = {
     shoes: 'Donasikan sepatu lama ke badan amal atau daur ulang.',
     trash: 'Buang di tempat sampah umum.',
     'white-glass': 'Harap daur ulang botol kaca putih di tempat daur ulang kaca dan hati hati'
-<<<<<<< HEAD
 };
-=======
-};
->>>>>>> origin/main
