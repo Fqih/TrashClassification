@@ -2,7 +2,7 @@
 
 ## Live Demo
 
-[Live Demo](https://trashclassification21.vercel.app)
+[Live Demo](https://trash-classification21.vercel.app)
 
 
 ## Overview
