@@ -1,5 +1,8 @@
 # Trash Classification
 
+[Live Demo](https://trashclassification21.vercel.app)
+
+
 ## Overview
 
 This project is designed to classify images of trash using a machine learning model. The application captures images from a webcam, processes them using a TensorFlow.js model, and displays the classification results along with suggestions.
