@@ -8,13 +8,17 @@ import LoadModel from './atoms/LoadModel';
 const CameraCapture = () => {
     const [model, setModel] = useState(null);
     const [prediction, setPrediction] = useState(null);
+    const [cameras, setCameras] = useState([]);
+    const [selectedCamera, setSelectedCamera] = useState(null);
     const videoRef = useRef(null);
     const canvasRef = useRef(null);
 
     useEffect(() => {
         const startCamera = async () => {
             try {
-                const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                const stream = await navigator.mediaDevices.getUserMedia({ 
+                    video: { deviceId: selectedCamera ? { exact: selectedCamera } : undefined } 
+                });
                 if (videoRef.current) {
                     videoRef.current.srcObject = stream;
                     videoRef.current.onloadedmetadata = () => {
@@ -25,9 +29,9 @@ const CameraCapture = () => {
                 console.error("Error accessing the camera: ", error);
             }
         };
-    
+
         startCamera();
-    
+
         return () => {
             if (videoRef.current && videoRef.current.srcObject) {
                 const stream = videoRef.current.srcObject;
@@ -35,8 +39,24 @@ const CameraCapture = () => {
                 tracks.forEach(track => track.stop());
             }
         };
-    }, []);  
-    
+    }, [selectedCamera]);
+
+    useEffect(() => {
+        const getCameras = async () => {
+            try {
+                const devices = await navigator.mediaDevices.enumerateDevices();
+                const videoDevices = devices.filter(device => device.kind === 'videoinput');
+                setCameras(videoDevices);
+                if (videoDevices.length > 0) {
+                    setSelectedCamera(videoDevices[0].deviceId);
+                }
+            } catch (error) {
+                console.error("Error enumerating devices: ", error);
+            }
+        };
+
+        getCameras();
+    }, []);
 
     const handleCapture = async () => {
         if (!model || !videoRef.current) return;
@@ -67,6 +87,24 @@ const CameraCapture = () => {
         <div className="model-container">
             <h1 className="header">Camera Capture</h1>
             <LoadModel onModelLoaded={setModel} />
+            
+            {cameras.length > 0 && (
+                <div className="camera-selection">
+                    <label htmlFor="camera-select">Select Camera: </label>
+                    <select
+                        id="camera-select"
+                        value={selectedCamera}
+                        onChange={(e) => setSelectedCamera(e.target.value)}
+                    >
+                        {cameras.map(camera => (
+                            <option key={camera.deviceId} value={camera.deviceId}>
+                                {camera.label || `Camera ${camera.deviceId}`}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+            )}
+            
             <video ref={videoRef} style={{ width: '50%', height: 'auto', borderRadius: '10px' }}></video>
             <Button text="Capture" onClick={handleCapture} className="button" />
             <canvas ref={canvasRef} style={{ display: 'none' }}></canvas>

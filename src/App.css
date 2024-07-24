@@ -56,6 +56,10 @@
   margin-top: 20px;
 }
 
+#camera-select {
+  margin-bottom: 20px;
+}
+
 .prediction-header {
   color: #333;
 }
