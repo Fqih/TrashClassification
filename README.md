@@ -1,12 +1,18 @@
 # Trash Classification
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 ## Live demo
 
 =======
 >>>>>>> origin/main
 [Live Demo](https://trashclassification21.vercel.app)
+=======
+## Live Demo
+
+[Live Demo](https://trash-classification21.vercel.app)
+>>>>>>> origin/main
 
 
 ## Overview
